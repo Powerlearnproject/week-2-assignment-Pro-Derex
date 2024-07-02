@@ -1,0 +1,52 @@
+/* 1.1 Retrieving All Expenses */
+SELECT * FROM `expenses`;
+
+/* 1.2 Specific Columns */
+SELECT `amount`, `date`, `category` FROM `expenses`;
+
+/* 1.3 Filtering by Date Range */
+SELECT * FROM `expenses` WHERE `date` BETWEEN '2021-01-01' AND '2024-12-15';
+
+/* 2.1 Filtering by Category */
+SELECT * FROM `expenses` WHERE `category` = 'Entertainment';
+
+/* 2.2 Filtering with Comparison Operators */
+SELECT * FROM `expenses` WHERE `amount` > 50;
+
+/* 2.3 Combining Filters (AND) */
+SELECT * FROM `expenses` WHERE `amount` > 75 AND `category` = 'Groceries''/;
+
+/* 2.4 Combining Filters (OR) */
+SELECT * FROM `expenses` WHERE `category` = 'Transportation' OR `category` = 'Groceries';
+
+/* 2.5 Filtering with NOT */
+SELECT * FROM `expenses` WHERE `category` != 'Entertainment';
+
+/* 3.1 Sorting by Amount */
+SELECT * FROM `expenses` ORDER BY `amount` DESC;
+
+/* 3.2 Sorting by Date and Category */
+SELECT * FROM `expenses` ORDER BY `date` DESC, `category` ASC;
+
+/* 4.1 Creating Income table */
+-- Use the expense_tracker database
+USE `expense_tracker`;
+
+-- Create the Income table
+CREATE TABLE IF NOT EXISTS Income (
+	`income_id` INT PRIMARY KEY AUTO_INCREMENT,
+   	`amount` DECIMAL(10,2) NOT NULL,
+	`date` DATE NOT NULL,
+	`source` VARCHAR(50) NOT NULL
+);
+
+/* 4.2 Adding Category to income table */
+ALTER TABLE income
+ADD category varchar(50);
+
+/* 4.3 Remove source column */
+ALTER TABLE income
+DROP COLUMN source;
+
+/* Delete Income table*/
+DROP TABLE income;
